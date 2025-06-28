@@ -76,26 +76,13 @@ git commit -m "Your commit message"
 eb deploy
 ```
 
----
-
-## 🔁 Deployment Strategies (optional testing)
-
-You can test different deployment policies from the CLI:
-
-```bash
-eb deploy --deployment-policy all-at-once
-eb deploy --deployment-policy rolling
-eb deploy --deployment-policy rolling-with-additional-batch
-eb deploy --deployment-policy immutable
-```
-
 To control batch size, use `.ebextensions/deploy.config`.
 
 Example `.ebextensions/deploy.config`:
 
 ```yaml
 option_settings:
-  aws:elasticbeanstalk:environment:
+  aws:elasticbeanstalk:command:
     DeploymentPolicy: Rolling
     BatchSizeType: Percentage
     BatchSize: 50
